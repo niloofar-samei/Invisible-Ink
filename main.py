@@ -49,12 +49,9 @@ async def extract_image(stego: UploadFile = File(...)):
 
             extracted_pixels[x, y] = (r2, g2, b2)
 
-    # ---- Improve quality ----
-    # enhancer = ImageEnhance.Brightness(extracted)
-    # extracted = enhancer.enhance(1.5)  # brighter
-
-    # enhancer = ImageEnhance.Contrast(extracted)
-    # extracted = enhancer.enhance(1.5)  # more contrast
+        # r2 = (red_color & 0b11000111) | (img_r >> 4 - 6)
+        # g2 = (green_color & 0b11000111) | (img_g >> 4 - 6)
+        # b2 = (blue_color & 0b11000111) | (img_b >> 4 - 6)
 
     buf = io.BytesIO()
     extracted.save(buf, format="PNG")
